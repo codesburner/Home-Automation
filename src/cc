@@ -11,27 +11,27 @@ require "rexml/document"
 puts "started desu~"
 
 # Running mean.
-sample_power_total = 0
-sample_power_count = 0
-sample_tmpr_total = 0
-sample_tmpr_count = 0
+power_total = 0
+power_count = 0
+tmpr_total = 0
+tmpr_count = 0
 
 # Best way to read stdin?
 ARGF.each do |line|
 #  puts "line: #{line}"
   if line.strip.length > 0
-    watts = Integer(line[/<ch1><watts>[0]*([^<]*)</, 1])
+    power = Integer(line[/<ch1><watts>[0]*([^<]*)</, 1])
     tmpr = Float(line[/<tmpr>([^<]*)</, 1])
-   
-    sample_power_total += watts
-    sample_power_count += 1
-    mean_power = sample_power_total / ( sample_power_count > 0 ? sample_power_count : 1 )
-     
-    sample_tmpr_total += tmpr
-    sample_tmpr_count += 1
-    mean_tmpr = sample_tmpr_total / ( sample_tmpr_count > 0 ? sample_tmpr_count : 1 )
     
-    puts "watts: #{watts} ( #{mean_power} ) | tmpr: #{tmpr} ( #{mean_tmpr} )"
+    power_total += power
+    power_count += 1
+    power_mean = power_total / ( power_count > 0 ? power_count : 1 )
+    
+    tmpr_total += tmpr
+    tmpr_count += 1
+    tmpr_mean = tmpr_total / ( tmpr_count > 0 ? tmpr_count : 1 )
+    
+    puts "power: #{power} W ( #{power_mean} W ) | tmpr: #{tmpr} C ( #{tmpr_mean} C )"
   end
 end
 
