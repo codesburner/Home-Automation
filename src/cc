@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 
+#
+# This is a simple script for parsing the serial data stream from a Current Cost metre.
+# Run it like this:
+# cc < /dev/ttyUSB0
+#
+
 require "rexml/document"
 
 puts "started desu~"
