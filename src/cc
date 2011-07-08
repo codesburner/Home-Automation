@@ -14,9 +14,8 @@ sample_tmpr_count = 0
 ARGF.each do |line|
 #  puts "line: #{line}"
   if line.strip.length > 0
-    # I have no idea why I need two [0]. 
-    watts = Integer(line.scan(/<ch1><watts>[0]*([^<]*)</)[0][0])
-    tmpr = Float(line.scan(/<tmpr>([^<]*)</)[0][0])
+    watts = Integer(line[/<ch1><watts>[0]*([^<]*)</, 1])
+    tmpr = Float(line[/<tmpr>([^<]*)</, 1])
    
     sample_power_total += watts
     sample_power_count += 1
